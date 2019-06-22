@@ -1,5 +1,5 @@
 # Auth CodeAlong Part 2
-* Create User Model
+* Create User model
 * Configure passport
 
 # Auth CodeALong Part 3
