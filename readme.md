@@ -1,5 +1,5 @@
 # About Authentication Simple Page
-* What tools are I using?
+* What tools are we using?
     * Passport
     * Passport Local
     * Passport Local Mongoose
