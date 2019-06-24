@@ -30,6 +30,7 @@ app.use(require("express-session")({
 app.use(passport.initialize()); //precisamos dessas duas linhas sempre que usamos o passaport
 app.use(passport.session());    //precisamos dessas duas linhas sempre que usamos o passaport
 
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); // ESSAS duas linhas sao importantes porque leeam a sessão e incoda e desencoda 
 passport.deserializeUser(User.deserializeUser());
 
@@ -43,7 +44,7 @@ app.get("/", function(req, res){
     res.render("home");
 });
 
-app.get("/painel", function(req, res){
+app.get("/painel", isLoggedIn,function(req, res){
     res.render("painel");
 });
 
@@ -65,7 +66,31 @@ app.post("/register", function(req, res){
         })
     });    
 });
- 
+
+// LOGIN ROUTES
+// render login form
+app.get("/login", function(req, res){
+    res.render("login");
+});
+// Login logic
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/painel",
+    failureRedirect: "/login"
+}), function(req, res){
+});
+// Logout
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
+}); 
+// Check is user is Login or/and Logout
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
+
 //======================
 // START THE SERVER
 //======================

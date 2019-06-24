@@ -1,11 +1,5 @@
-# Auth CodeAlong Part 2
-* Create User model
-* Configure passport
-
-# Auth CodeALong Part 3
-* Add Register routes
-* Add Register form
-
-# Auth CodeAlong Part 4
-* Add Login routes
-* Add Login form
+# About Authentication Simple Page
+* What tools are I using?
+    * Passport
+    * Passport Local
+    * Passport Local Mongoose
